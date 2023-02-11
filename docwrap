@@ -1,0 +1,71 @@
+#!/bin/bash
+
+TEXT="Lorem ipsum dolor sit amet, consectetur (text) adipiscing elit, sed do eiusmod (another text) tempor incididunt ut labore et (the last 1 text ) dolore magna aliqua."
+
+REGEXES=(
+  "\([^\)]*\)"
+  "[^[:space:]]+"
+)
+
+declare -A index_map
+declare -A opposit_index_map
+
+function create_opposit_index_map {
+  opposit_index_map=()
+  offset=0
+
+  sorted_indexes=($(echo "${!index_map[@]}" | tr ' ' '\n' | sort -n))
+  for start_index in "${sorted_indexes[@]}"; do
+    end_index="${index_map[$start_index]}"
+
+    if (( $offset < $start_index )); then
+      opposit_index_map[$offset]=$(( $start_index - 1 ))
+    fi
+    offset=$(( $end_index + 1 ))
+  done
+
+  if (( $offset < ${#TEXT} )); then
+    opposit_index_map[$offset]=$(( ${#TEXT} - 1 ))
+  fi
+}
+
+for regex in "${REGEXES[@]}"; do
+  create_opposit_index_map
+
+  echo "Opposit map:"
+  for i in "${!opposit_index_map[@]}"; do
+    echo "$i - ${opposit_index_map[$i]}"
+  done
+
+  for start_index in "${!opposit_index_map[@]}"; do
+    end_index="${opposit_index_map[$start_index]}"
+
+    text_chunk="${TEXT:$start_index:$(( $end_index - $start_index + 1 ))}"
+    echo "Chunk: $text_chunk"
+
+    sliding_offset=$start_index
+
+    while [[ "$text_chunk" =~ $regex ]]; do
+      text_rest=${text_chunk#*${BASH_REMATCH[0]}}
+      echo "Rest: $text_rest"
+
+      match_end=$(( ${#text_chunk} - ${#text_rest} ))
+      match_start=$(( $match_end - ${#BASH_REMATCH[0]} ))
+      echo "New range: $(( $match_start + $sliding_offset )) : $(( $match_end + $sliding_offset ))"
+
+      index_map[$(( $match_start + $sliding_offset ))]=$(( $match_end + $sliding_offset ))
+
+      sliding_offset=$(( $sliding_offset + $match_end ))
+      text_chunk="$text_rest"
+    done
+  done
+done
+
+echo "$TEXT"
+sorted_indexes=($(echo "${!index_map[@]}" | tr ' ' '\n' | sort -n))
+for i in "${sorted_indexes[@]}"; do
+  j="${index_map[$i]}"
+
+  echo -n "${TEXT:$i:$(( $j - $i ))}_"
+done
+echo

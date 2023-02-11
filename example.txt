@@ -1,0 +1,13 @@
+Original:
+
+Lorem ipsum dolor sit amet, [There is an example of the very-very looooong url that should not be separated in the Markdown](https://jsonformatter.curiousconcept.com/?spec=rfc8259&template=threespace&process=true&data=%7B%22glossary%22%3A%7B%22title%22%3A%22example%20glossary%22%2C%22GlossDiv%22%3A%7B%22title%22%3A%22S%22%2C%22GlossList%22%3A%7B%22GlossEntry%22%3A%7B%22ID%22%3A%22SGML%22%2C%22SortAs%22%3A%22SGML%22%2C%22GlossTerm%22%3A%22Standard%20Generalized%20Markup%20Language%22%2C%22Acronym%22%3A%22SGML%22%2C%22Abbrev%22%3A%22ISO%208879%3A1986%22%2C%22GlossDef%22%3A%7B%22para%22%3A%22A%20meta-markup%20language%2C%20used%20to%20create%20markup%20languages%20such%20as%20DocBook.%22%2C%22GlossSeeAlso%22%3A%5B%22GML%22%2C%22XML%22%5D%7D%2C%22GlossSee%22%3A%22markup%22%7D%7D%7D%7D%7D#) consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Should be:
+
+Lorem ipsum dolor sit amet, [There is an example of the very-very looooong url that should not be separated in the Markdown](https://jsonformatter.curiousconcept.com/?spec=rfc8259&template=threespace&process=true&data=%7B%22glossary%22%3A%7B%22title%22%3A%22example%20glossary%22%2C%22GlossDiv%22%3A%7B%22title%22%3A%22S%22%2C%22GlossList%22%3A%7B%22GlossEntry%22%3A%7B%22ID%22%3A%22SGML%22%2C%22SortAs%22%3A%22SGML%22%2C%22GlossTerm%22%3A%22Standard%20Generalized%20Markup%20Language%22%2C%22Acronym%22%3A%22SGML%22%2C%22Abbrev%22%3A%22ISO%208879%3A1986%22%2C%22GlossDef%22%3A%7B%22para%22%3A%22A%20meta-markup%20language%2C%20used%20to%20create%20markup%20languages%20such%20as%20DocBook.%22%2C%22GlossSeeAlso%22%3A%5B%22GML%22%2C%22XML%22%5D%7D%2C%22GlossSee%22%3A%22markup%22%7D%7D%7D%7D%7D#)
+consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+deserunt mollit anim id est laborum.
